@@ -1,10 +1,6 @@
 # SEG Algorithm
 This project was influenced by Luhn's Algorithm. SEG was designed to create a 18 digit number, that is secured via a checksum. This is done by starting out with a 12 digit random number. More detail will be posted later in this file. 
 
-## Getting Started
-
-If you are looking to use it for Python, I have a PyPi package * [here](www.danielsmith.co). Alternatively, you can implement  this into any language you wish. 
-
 ### Prerequisites
 
 For the Python version I have provided, you must use Python 3.6 with the CSV, Time, and Random packages. 
