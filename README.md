@@ -3,13 +3,13 @@ This project was influenced by Luhn's Algorithm. SEG was designed to create a 18
 
 ## Getting Started
 
-If you are looking to use it for Python, I have a PyPi package * [here](www.danielsmith.co). Alternativly, you can impliment this into any language you wish. 
+If you are looking to use it for Python, I have a PyPi package * [here](www.danielsmith.co). Alternatively, you can implement  this into any language you wish. 
 
 ### Prerequisites
 
 For the Python version I have provided, you must use Python 3.6 with the CSV, Time, and Random packages. 
 
-### Detailed Explination of the Algorithm
+### Detailed Explanation of the Algorithm
 
 First, twelve digits are generated at random. This will be broken into 3 segments. 
 
