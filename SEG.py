@@ -9,7 +9,6 @@
 
 import random
 import csv
-from time import *
 import time
 
 def generateAccount():
@@ -27,12 +26,7 @@ def generateAccount():
     thirdTotal = sum([int(x) for x in str(thirdSeg)])
     grandTotal = sum([int(x) for x in str(account)])
     #print("grand {}".format(grandTotal))
-    totalsum = grandTotal
-    totalsum = str(totalsum)
-    print(totalsum)
-    if len(str(totalsum)) > 2:
-        totalsum = str(totalsum)
-        totalsum = (totalsum[0:2])
+
     if len(str(firstTotal)) == 2:
         firstTotal = str(firstTotal)
         firstTotal = (firstTotal[1])
@@ -45,6 +39,7 @@ def generateAccount():
     grandTotal = grandTotal / len(account)
 
 
+
     #print(firstSeg)
     #print(secondSeg)
     #print(thirdSeg)
@@ -55,7 +50,16 @@ def generateAccount():
 
     #print(forthSeg)
 
-    account = "{}{}{}{}{}".format(firstSeg,secondSeg,thirdSeg,forthSeg,totalsum)
+
+    account = "{}{}{}{}".format(firstSeg,secondSeg,thirdSeg,forthSeg)
+
+    totalsum = sum([int(x) for x in str(account)])
+
+    if len(str(totalsum)) > 2:
+        totalsum = str(totalsum)
+        totalsum = (totalsum[0:2])
+    #print(totalsum)
+    account = "{}{}{}{}{}".format(firstSeg, secondSeg, thirdSeg, forthSeg, totalsum)
     return(account)
 
 def checkAccount(account):
@@ -80,10 +84,7 @@ def checkAccount(account):
     firstTotal = sum([int(x) for x in str(firstSeg)])
     secondTotal = sum([int(x) for x in str(secondSeg)])
     thirdTotal = sum([int(x) for x in str(thirdSeg)])
-    grandTotal = sum([int(x) for x in str(account)])
-    totalsum = sum([int(x) for x in str(smallAccount)])
-    totalsum = str(totalsum)
-    totalsum = totalsum[0:2]
+    grandTotal = sum([int(x) for x in str(smallAccount)])
     if len(str(firstTotal)) == 2:
         firstTotal = str(firstTotal)
         firstTotal = (firstTotal[1])
@@ -93,15 +94,22 @@ def checkAccount(account):
     if len(str(thirdTotal)) == 2:
         thirdTotal = str(thirdTotal)
         thirdTotal = (thirdTotal[1])
-    grandTotal = grandTotal / len(account)
+
+    grandTotal = grandTotal / 12
 
     grandTotal = int(grandTotal)
 
     forthSeg = (str(firstTotal)) + (str(secondTotal) + (str(thirdTotal) + (str(grandTotal))))
 
-    checkedNumber = "{}{}{}{}{}".format(firstSeg,secondSeg,thirdSeg,forthSeg,totalsum)
+    checkedNumber = "{}{}{}{}".format(firstSeg,secondSeg,thirdSeg,forthSeg)
+    totalsum = sum([int(x) for x in str(checkedNumber)])
+
+    if len(str(totalsum)) > 2:
+        totalsum = str(totalsum)
+        totalsum = (totalsum[0:2])
+    checkedNumber = "{}{}{}{}{}".format(firstSeg, secondSeg, thirdSeg, forthSeg, totalsum)
     #print("{} VS {}".format(checkedNumber,account))
-    print(checkedNumber)
+    #print(checkedNumber)
     if checkedNumber != account:
         print("INVALID ACCOUNT: CHECKSUM")
         return False
@@ -113,7 +121,7 @@ def checkAccount(account):
 while True:
     print("This program will generate a secure 18 digit number. If any digit is changed of the number, "
           "it will not be valid.")
-    print("Options: Generate Number (g), Validate Number (v), Generate List (gl), or Quit (q)")
+    print("Options: Generate Number (g), Validate Number (v), Generate List (gl), Check List (cl), or Quit (q)")
     next = input("Enter a command: ")
     next = next.lower()
     if next == "g" or "v" or "q":
@@ -128,7 +136,22 @@ while True:
             origLength = listLength
             startTime = time.time()
             with open('generatedList.csv', mode='w') as csv_file:
-                fieldnames = ['run', 'number']
+                fieldnames = ['number']
+                writer = csv.DictWriter(csv_file, fieldnames=fieldnames, delimiter=',', lineterminator='\n')
+                writer.writeheader()
+                while listLength >= 1:
+                    number = generateAccount()
+                    writer.writerow({'number': number})
+                    #print(number)
+                    listLength -= 1
+                    run += 1
+                endTime = time.time()
+                print("Time taken (seconds): {}".format((endTime - startTime)))
+        if next == "cl":
+            run = 1
+            startTime = time.time()
+            with open('generatedList.csv') as csv_file:
+                fieldnames = ['number']
                 writer = csv.DictWriter(csv_file, fieldnames=fieldnames, delimiter=',', lineterminator='\n')
                 writer.writeheader()
                 while listLength >= 1:
