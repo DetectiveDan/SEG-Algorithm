@@ -72,7 +72,7 @@ def checkAccount(account):
     if account.isdigit():
         print("Confirmed Digit")
     else:
-        print("INVALID ACCOUNT: DIGIT")
+        print("INVALID ACCOUNT: DIGIT LEN")
         return False
     firstSeg = account[0:4]
     secondSeg = account[4:8]
