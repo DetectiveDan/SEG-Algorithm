@@ -1,4 +1,4 @@
-# Created by Daniel Cory Smith
+# Created by Daniel C Smith
 # DanielSmith.co
 # Dependencies: No External Modules
 # Python 3.6 with random library
